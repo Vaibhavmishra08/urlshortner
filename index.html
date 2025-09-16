@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener - Quick Link Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>URL Shortener</h1>
+            <p>Convert long URLs into short, shareable links</p>
+        </header>
+
+        <!-- Main Input Section -->
+        <main class="main-section">
+            <div class="card">
+                <div class="card__body">
+                    <form id="urlForm" class="url-form">
+                        <div class="form-group">
+                            <label for="urlInput" class="form-label">Enter your long URL</label>
+                            <input 
+                                type="url" 
+                                id="urlInput" 
+                                class="form-control url-input" 
+                                placeholder="https://example.com/very/long/url/path"
+                                required
+                            >
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--lg btn--full-width">
+                            Shorten URL
+                        </button>
+                    </form>
+                    
+                    <!-- Error Message -->
+                    <div id="errorMessage" class="error-message hidden">
+                        <span class="error-text"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultSection" class="result-section hidden">
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Your shortened URL is ready!</h3>
+                        <div class="result-container">
+                            <div class="shortened-url-display">
+                                <input 
+                                    type="text" 
+                                    id="shortenedUrlDisplay" 
+                                    class="form-control shortened-url-input" 
+                                    readonly
+                                >
+                                <button id="copyButton" class="btn btn--secondary copy-btn">
+                                    Copy
+                                </button>
+                            </div>
+                            <div class="result-actions">
+                                <button id="testButton" class="btn btn--outline">
+                                    Test Link
+                                </button>
+                            </div>
+                        </div>
+                        <div id="copySuccess" class="copy-success hidden">
+                            <span class="status status--success">✓ Copied to clipboard!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Statistics Section -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalUrls">0</div>
+                    <div class="stat-label">URLs Shortened</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalClicks">0</div>
+                    <div class="stat-label">Total Clicks</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section class="history-section">
+            <div class="card">
+                <div class="card__header">
+                    <h2>URL History</h2>
+                    <div class="history-controls">
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            class="form-control search-input" 
+                            placeholder="Search URLs..."
+                        >
+                    </div>
+                </div>
+                <div class="card__body">
+                    <div id="historyEmpty" class="empty-state">
+                        <p>No URLs shortened yet. Create your first short link above!</p>
+                    </div>
+                    <div id="historyTable" class="history-table hidden">
+                        <div class="table-header">
+                            <div class="table-col table-col--original">Original URL</div>
+                            <div class="table-col table-col--short">Short Code</div>
+                            <div class="table-col table-col--clicks">Clicks</div>
+                            <div class="table-col table-col--actions">Actions</div>
+                        </div>
+                        <div id="historyList" class="table-body">
+                            <!-- History items will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
